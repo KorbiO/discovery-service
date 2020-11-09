@@ -11,15 +11,6 @@ pipeline {
         	git credentialsId: 'gitPwd', url: 'https://github.com/KorbiO/discovery-service'
         		}
     }
-		stage('Compile') {
-			steps {
-			withMaven(maven : 'maven-3'){
-				
-				bat 'mvn -Dmaven.test.failure.ignoire=true clean package'
-				
-			}	
-				  }
-		}
 		
 		
 	}
