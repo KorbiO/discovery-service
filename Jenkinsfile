@@ -8,13 +8,13 @@ pipeline {
 	stages {
 		stage('SCM Checkout'){
 			steps{
-        	git credentialsId: 'gitPwd', url: 'https://github.com/KorbiO/imdp-latest'
+        	git credentialsId: 'gitPwd', url: 'https://github.com/KorbiO/discovery-service'
         		}
     }
 		stage('Compile') {
 			steps {
 			withMaven(maven : 'maven-3'){
-			
+				bat 'cd DiscoveryService' 
 				bat 'mvn -Dmaven.test.failure.ignoire=true clean package'
 				
 			}	
@@ -22,19 +22,19 @@ pipeline {
 		}
 		stage('Build Docker Image'){
 			steps{
-        		bat 'docker build -t omarkorbi/imdb:latest .'
+        		bat 'docker build -t omarkorbi/discovery-service:latest .'
         		}
     }
      stage('Push Docker Image'){
      	steps{
 	        bat 'docker login -u omarkorbi -p gotktpas123'
-	  		bat 'docker tag imdp:latest omarkorbi/imdp '
-	  		bat 'docker push omarkorbi/imdp'
+	  		bat 'docker tag discovery-service:latest omarkorbi/discovery-service '
+	  		bat 'docker push omarkorbi/discovery-service'
 	  		}
     }
-    stage('Run Container on Dev Server'){
+    stage('Run Kubernetes'){
     	steps{
-   	   		bat 'docker run -p 8761:8761 -d --name imdp omarkorbi/imdp:latest'
+   	   		bat 'kubectl apply -f deployment.yml'
    	   		}
     }
 		
