@@ -11,7 +11,7 @@ pipeline {
         	git credentialsId: 'gitPwd', url: 'https://github.com/KorbiO/discovery-service'
         		}
     }
-		stage('Compile') {
+		{
 			steps {
 			withMaven(maven : 'maven-3'){
 				
@@ -19,6 +19,7 @@ pipeline {
 				
 			}	
 				  }
+		}
 		
 	}
 }
