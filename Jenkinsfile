@@ -34,8 +34,8 @@ pipeline {
     }
      stage('Run Kubernetes'){
     	steps{
-    	bat 'kubectl create -f deployment.yaml'
-   	   		bat 'kubectl apply -f deployment.yaml'
+    	
+   	   		bat 'kubectl --kubeconfig ./config apply -f deployment.yaml'
    	   		}
     }
      
