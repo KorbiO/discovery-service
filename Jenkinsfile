@@ -32,6 +32,11 @@ pipeline {
 	  		bat 'docker push omarkorbi/discovery-service'
 	  		}
     }
+     stage('Run Kubernetes'){
+    	steps{
+   	   		bat 'kubectl apply -f deployment.yml'
+   	   		}
+    }
      
     
 		
