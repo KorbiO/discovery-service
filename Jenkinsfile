@@ -11,7 +11,7 @@ pipeline {
         	git credentialsId: 'gitPwd', url: 'https://github.com/KorbiO/discovery-service'
         		}
     }
-		{
+		stage('Compile') {
 			steps {
 			withMaven(maven : 'maven-3'){
 				
@@ -20,6 +20,13 @@ pipeline {
 			}	
 				  }
 		}
+		stage('Build Docker Image'){
+			steps{
+        		bat 'docker build -t omarkorbi/discovery-service:latest .'
+        		}
+    }
+     
+    
 		
 	}
 }
