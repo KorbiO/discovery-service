@@ -25,6 +25,13 @@ pipeline {
         		bat 'docker build -t omarkorbi/discovery-service:latest .'
         		}
     }
+    stage('Push Docker Image'){
+     	steps{
+	        bat 'docker login -u omarkorbi -p gotktpas123'
+	  		bat 'docker tag discovery-service:latest omarkorbi/discovery-service '
+	  		bat 'docker push omarkorbi/discovery-service'
+	  		}
+    }
      
     
 		
