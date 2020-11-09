@@ -14,7 +14,7 @@ pipeline {
 		stage('Compile') {
 			steps {
 			withMaven(maven : 'maven-3'){
-				bat 'cd DiscoveryService' 
+				
 				bat 'mvn -Dmaven.test.failure.ignoire=true clean package'
 				
 			}	
