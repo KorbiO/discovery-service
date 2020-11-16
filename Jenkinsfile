@@ -15,7 +15,18 @@ pipeline {
 			steps {
 			withMaven(maven : 'maven-3'){
 				
-				bat 'mvn -Dmaven.test.failure.ignoire=true clean package'
+				bat './mvnw clean compile'
+				
+				
+			}	
+				  }
+		}
+		stage('Package') {
+			steps {
+			withMaven(maven : 'maven-3'){
+				
+				
+				bat './mvnw package -DskipTests'
 				
 			}	
 				  }
