@@ -39,7 +39,7 @@ pipeline {
     stage('Push Docker Image'){
      	steps{
 	        bat 'docker login -u omarkorbi -p gotktpas123'
-	  		bat 'docker tag discovery-service:latest omarkorbi/discovery-service '
+	  		bat 'docker tag omarkorbi/discovery-service:latest omarkorbi/discovery-service '
 	  		bat 'docker push omarkorbi/discovery-service'
 	  		}
     }
